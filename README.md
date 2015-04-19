@@ -1,7 +1,6 @@
-# Yang_CSCI2270_FinalProject
-Final Project
+#Final Project
 
-Project Summary:
+##Project Summary:
 Our project will have the user search for movies to rent from his home. We will also create a graph of various areas where he can rent the movie (RedBox, Blockbuster, DVD Stop, Barnes&Noble, Super Awesome Taiwan Rentals, etc.) The user will also input the current gas price and efficency. When the user enters the movie, we will output the distance between his location and the movie store, and return the total lowest price. For example, he will enter
   
   Movie: Shashank Redemption
@@ -14,23 +13,23 @@ And the program will output the top three cheapest prices as well as the distanc
   Blockbuster: $3.90, 6 miles.
 
 ---
-How to Run:
+##How to Run:
 
---
-Dependancies:
+---
+##Dependancies:
 
---
-System Requirements:
+---
+##System Requirements:
 Linux
 
 ---
-Group Members:
+##Group Members:
 Amy Chen & Chia-hsin Yang
 
 ---
-Contributors:
+##Contributors:
 
 ---
-Open issues/Bugs:
+##Open issues/Bugs:
 
 
