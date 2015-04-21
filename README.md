@@ -23,7 +23,7 @@ And the program will output the top three cheapest total prices (price of DVD pl
 
 
 ##System Requirements:
-Linux
+Preferably Linux, but any system that can run C++.
 
 
 ##Group Members:
