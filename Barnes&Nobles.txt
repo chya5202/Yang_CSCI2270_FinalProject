@@ -32,7 +32,7 @@ Raiders of the Lost Ark,2.00
 American History X,2.00
 Saving Private Ryan,2.00
 City Lights,2.00
-Spirited Away,2.00
+Spirited Away,2.50
 Psycho,2.00
 Rear Window,2.00
 Whiplash,2.00
