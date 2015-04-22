@@ -1,0 +1,50 @@
+Shawshank Redemption,1.66
+The Godfather,1.29
+The Godfather: Part II,1.10
+The Dark Knight,1.64
+Pulp Fiction,1.44
+12 Angry Men,1.90
+Schindler's List,1.20
+The Good the Bad and the Ugly,1.85
+The Lord of the Rings: The Return of the King,1.62
+Fight Club,1.20
+The Lord of the Rings: The Fellowship of the Ring,1.69
+Star Wars: Episode V - The Empire Strikes Back,1.62
+Forrest Gump,1.78
+Inception,1.16
+One Flew Over the Cuckoo's Nest,1.93
+The Lord of the Rings: The Two Towers,1.44
+Goodfellas,1.83
+The Matrix,1.58
+Star Wars: Episode IV - A New Hope,1.82
+Seven Samurai,1.95
+Interstellar,1.95
+City of God,1.23
+Se7en,1.18
+The Usual Suspects,1.80
+The Silence of the Lambs,1.11
+It's a Wonderful Life,2.14
+Once Upon a Time in the West,2.11
+Leon: The Professional,2.37
+Life Is Beautiful,2.48
+Casablanca,2.16
+Raiders of the Lost Ark,2.30
+American History X,2.09
+Saving Private Ryan,2.46
+City Lights,2.10
+Spirited Away,2.31
+Psycho,2.00
+Rear Window,2.35
+Whiplash,2.10
+The Intouchables,2.48
+Modern Times,1.40
+Terminator 2: Judgment Day,2.00
+Memento,2.28
+The Green Mile,2.26
+The Pianist,2.40
+The Departed,2.34
+Apocalypse Now,2.35
+Sunset Blvd.,2.22
+Gladiator,2.23
+Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb,2.07
+Back to the Future,2.00

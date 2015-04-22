@@ -1,0 +1,50 @@
+Shawshank Redemption,1.00
+The Godfather,2.20
+The Godfather: Part II,1.30
+The Dark Knight,2.40
+Pulp Fiction,1.50
+12 Angry Men,2.50
+Schindler's List,1.00
+The Good the Bad and the Ugly,2.10
+The Lord of the Rings: The Return of the King,2.00
+Fight Club,1.60
+The Lord of the Rings: The Fellowship of the Ring,1.70
+Star Wars: Episode V - The Empire Strikes Back,1.50
+Forrest Gump,1.30
+Inception,1.50
+One Flew Over the Cuckoo's Nest,1.90
+The Lord of the Rings: The Two Towers,2.00
+Goodfellas,1.60
+The Matrix,1.80
+Star Wars: Episode IV - A New Hope,2.20
+Seven Samurai,1.40
+Interstellar,1.60
+City of God,1.90
+Se7en,1.25
+The Usual Suspects,1.80
+The Silence of the Lambs,2.25
+It's a Wonderful Life,1.60
+Once Upon a Time in the West,2.00
+Leon: The Professional,1.50
+Life Is Beautiful,1.70
+Casablanca,1.90
+Raiders of the Lost Ark,1.50
+American History X,1.80
+Saving Private Ryan,1.98
+City Lights,1.34
+Spirited Away,1.60
+Psycho,1.70
+Rear Window,1.60
+Whiplash,2.00
+The Intouchables,1.40
+Modern Times,1.40
+Terminator 2: Judgment Day,1.91
+Memento,2.00
+The Green Mile,1.99
+The Pianist,1.99
+The Departed,1.99
+Apocalypse Now,1.79
+Sunset Blvd.,1.38
+Gladiator,2.00
+Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb,1.60
+Back to the Future,1.85
