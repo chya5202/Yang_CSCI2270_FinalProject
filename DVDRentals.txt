@@ -43,7 +43,7 @@ Memento,1.48
 The Green Mile,1.75
 The Pianist,1.66
 The Departed,1.74
-Apocalypse Now,2.27
+Apocalypse Now,2.20
 Sunset Blvd.,2.40
 Gladiator,1.80
 Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb,2.00
