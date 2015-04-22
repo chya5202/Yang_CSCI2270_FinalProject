@@ -18,7 +18,7 @@ Goodfellas,1.90
 The Matrix,1.99
 Star Wars: Episode IV - A New Hope,1.77
 Seven Samurai,1.95
-Interstellar,2.14
+Interstellar,2.40
 City of God,2.00
 Se7en,1.95
 The Usual Suspects,1.99
