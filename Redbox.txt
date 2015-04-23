@@ -46,5 +46,5 @@ The Departed,2.60
 Apocalypse Now,1.80
 Sunset Blvd.,1.50
 Gladiator,2.00
-Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb,1.7-0
+Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb,1.70
 Back to the Future,1.85
