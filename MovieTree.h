@@ -12,14 +12,14 @@
 
 struct MovieNode{
     std::string title;
-    int price;
+    double price;
     MovieNode *parent;
     MovieNode *leftChild;
     MovieNode *rightChild;
 
     MovieNode(){};
 
-    MovieNode(std::string in_title, int in_price)
+    MovieNode(std::string in_title, double in_price)
     {
         title = in_title;
         price = in_price;
@@ -33,12 +33,11 @@ class MovieTree
         MovieTree();
         //virtual ~MovieTree();
         void printMovieInventory();
-        void addMovieNode(std::string title, int price);
-        void findMovie(std::string storename, std::string title);
-        void rentMovie(std::string storename, std::string title);
+        void addMovieNode(std::string title, double price);
+        void findMovie(std::string storename, double storedist, std::string title);
+        double totalMovieCost(double distance, double efficiency, double gasprice, double rentalprice);
     protected:
     private:
-        void DeleteAll(MovieNode *node);
         void printMovieInventory(MovieNode *node);
         MovieNode* searchTree(std::string storename, MovieNode * node, std::string title);
         MovieNode *root;
@@ -49,7 +48,6 @@ class MovieStore
     public:
     MovieStore ();
     void buildMovieStore();
-    double totalMovieCost(double distance, double efficiency, double gasprice, double rentalprice);
 };
 
 
@@ -58,6 +56,13 @@ extern MovieTree *BlockBuster;
 extern MovieTree *DVDRentals;
 extern MovieTree *RedBox;
 extern MovieTree *STAR;
+extern double efficiency;
+extern double gasprice;
+extern double BNdist;
+extern double BBdist;
+extern double DVDdist;
+extern double RBdist;
+extern double STARdist;
 
 
 #endif // MOVIETREE_H
