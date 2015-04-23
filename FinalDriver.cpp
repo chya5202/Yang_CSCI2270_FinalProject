@@ -8,66 +8,62 @@
 #include <iomanip>
 #include <string>
 #include "MovieTree.h"
-#include "MovieTree.cpp"
 
 
 using namespace std;
 
 int menu();
-int atoi_replace(string myString);
+double atoi_replace(string myString);
 void buildMovieStore();
 MovieTree *BarnesNoble = new MovieTree();
 MovieTree *BlockBuster = new MovieTree();
 MovieTree *DVDRentals = new MovieTree();
 MovieTree *RedBox = new MovieTree();
 MovieTree *STAR = new MovieTree();
+double gasprice;
+double efficiency;
+double BNdist;
+double BBdist;
+double DVDdist;
+double RBdist;
+double STARdist;
 
 int main(){
 
     buildMovieStore();
     int choice = 0;
+    cout << "Welcome to SuperDuperMovieRenter!" << endl;
+    cout << "In order for us to serve you better, please provide the following information:" << endl;
+    cout << "What is your car's fuel efficiency? (miles per gallon)" << endl;
+    cin >> efficiency;
+    cout << "How much is gasoline right now? (dollars per gallon)" << endl;
+    cin >> gasprice;
+    cout << "How far away is your nearest Barnes&Noble? (miles) "<< endl;
+    cin >> BNdist;
+    cout << "How far away is your nearest BlockBuster? (miles)" << endl;
+    cin >> BBdist;
+    cout << "How far away is your nearest DVDRental? (miles)" << endl;
+    cin >> DVDdist;
+    cout << "How far away is your nearest Redbox? (miles)" << endl;
+    cin >> RBdist;
+    cout << "How far away is your nearest STAR? (miles)"<< endl;
+    cin >> STARdist;
+
     choice = menu(); //initiates the menu
-    while (choice != 4){ //as long as the user does not choose to quit
-        if (choice == 1){ //find a movie
+    while (choice != 3){ //as long as the user does not choose to quit
+        if (choice == 1){ //compare price
             cout << "Enter title:" << endl;
             string findtitle;
             getline(cin,findtitle);
             getline(cin,findtitle);
-            BarnesNoble->findMovie("Barnes&Noble", findtitle);
-            BlockBuster->findMovie("BlockBuster", findtitle);
-            DVDRentals->findMovie("DVDRentals", findtitle);
-            RedBox->findMovie("Redbox", findtitle);
-            STAR->findMovie("STAR", findtitle);
+            cout << "The total price to rent " << findtitle << " from:" << endl;
+            BarnesNoble->findMovie("Barnes&Noble", BNdist, findtitle);
+            BlockBuster->findMovie("BlockBuster", BBdist, findtitle);
+            DVDRentals->findMovie("DVDRentals", DVDdist, findtitle);
+            RedBox->findMovie("Redbox", RBdist, findtitle);
+            STAR->findMovie("STAR", STARdist, findtitle);
         }
-        if (choice == 2){ //rent a movie
-            cout << "Enter title:" << endl;
-            string renttitle;
-            getline(cin,renttitle);
-            getline(cin,renttitle);
-            cout << "Would you like to rent " << renttitle << " from Barnes&Noble, BlockBuster, DVDRentals, Redbox, or STAR?" << endl;
-            string storename;
-            getline(cin, storename);
-            getline(cin, storename);
-            if (storename == "Barnes&Noble"){
-                BarnesNoble->rentMovie(storename, renttitle);
-            }
-            else if (storename == "BlockBuster"){
-                BlockBuster->rentMovie(storename, renttitle);
-            }
-            else if (storename == "DVDRentals"){
-                DVDRentals->rentMovie(storename, renttitle);
-            }
-            else if (storename == "Redbox"){
-                RedBox->rentMovie(storename, renttitle);
-            }
-            else if (storename == "STAR"){
-                STAR->rentMovie(storename, renttitle);
-            }
-            else{
-                cout << "Please enter a valid movie rental store." << endl;
-            }
-        }
-        if (choice == 3){ //print inventory of a store
+        if (choice == 2){ //print inventory of a store
             cout << "Would you like to print the inventory of Barnes&Noble, BlockBuster, DVDRentals, Redbox, or STAR?" << endl;
             string storename;
             getline(cin, storename);
@@ -101,9 +97,8 @@ int menu() //main menu and decisions
 {
     cout << "======Movie Deals====="<< endl;
     cout << "1. Compare prices" << endl;
-    cout << "2. Rent a movie" << endl;
-    cout << "3. Print the inventory of a store" << endl;
-    cout << "4. Quit" << endl;
+    cout << "2. Print the inventory of a store" << endl;
+    cout << "3. Quit" << endl;
 
     int choice1;
     cin >> ws;
@@ -112,8 +107,8 @@ int menu() //main menu and decisions
 }
 
 
-int atoi_replace(string myString){
-    int myInt;
+double atoi_replace(string myString){
+    double myInt;
     istringstream buffer(myString);
     buffer >> myInt;
     return myInt;
@@ -121,17 +116,16 @@ int atoi_replace(string myString){
 
 void buildMovieStore(){ //builds the movie trees for each store
     ifstream infile;
-    infile.open("Barnes&Nobles.txt");
+    infile.open("Barnes&Noble.txt");
     MovieNode theRoot;
     string line;
     string title;
     string sprice;
-    int price;
+    double price;
     while (getline(infile, line)){
         stringstream infile(line);
         MovieNode newMovie;
         getline(infile, title, ','); //breaks up until the first comma into own string
-        //cout << title << " ";
         getline(infile, sprice, '\n');
         price = atoi_replace(sprice);
         BarnesNoble->addMovieNode(title, price);
@@ -139,16 +133,9 @@ void buildMovieStore(){ //builds the movie trees for each store
     infile.close();
 
     infile.open("BlockBuster.txt");
-    //MovieNode theRoot;
-    //string line;
-    //string title;
-    //string sprice;
-    //int price;
     while (getline(infile, line)){
-        //stringstream infile(line);
-        //MovieNode newMovie;
+        stringstream infile(line);
         getline(infile, title, ','); //breaks up until the first comma into own string
-        //cout << title << " ";
         getline(infile, sprice, '\n');
         price = atoi_replace(sprice);
         BlockBuster->addMovieNode(title, price);
@@ -156,16 +143,9 @@ void buildMovieStore(){ //builds the movie trees for each store
     infile.close();
 
     infile.open("DVDRentals.txt");
-    //MovieNode theRoot;
-    //string line;
-    //string title;
-    //string sprice;
-    //int price;
     while (getline(infile, line)){
         stringstream infile(line);
-        //MovieNode newMovie;
         getline(infile, title, ','); //breaks up until the first comma into own string
-        //cout << title << " ";
         getline(infile, sprice, '\n');
         price = atoi_replace(sprice);
         DVDRentals->addMovieNode(title, price);
@@ -173,16 +153,9 @@ void buildMovieStore(){ //builds the movie trees for each store
     infile.close();
 
     infile.open("Redbox.txt");
-    //MovieNode theRoot;
-    //string line;
-    //string title;
-    //string sprice;
-    //int price;
     while (getline(infile, line)){
         stringstream infile(line);
-        //MovieNode newMovie;
         getline(infile, title, ','); //breaks up until the first comma into own string
-        //cout << title << " ";
         getline(infile, sprice, '\n');
         price = atoi_replace(sprice);
         RedBox->addMovieNode(title, price);
@@ -190,16 +163,9 @@ void buildMovieStore(){ //builds the movie trees for each store
     infile.close();
 
     infile.open("STAR.txt");
-    //MovieNode theRoot;
-    //string line;
-    //string title;
-    //string sprice;
-    //int price;
     while (getline(infile, line)){
         stringstream infile(line);
-        //MovieNode newMovie;
         getline(infile, title, ','); //breaks up until the first comma into own string
-        //cout << title << " ";
         getline(infile, sprice, '\n');
         price = atoi_replace(sprice);
         STAR->addMovieNode(title, price);
