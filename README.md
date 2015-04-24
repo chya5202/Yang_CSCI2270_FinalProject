@@ -16,6 +16,8 @@ And the program will output the top three cheapest total prices (price of DVD pl
   Blockbuster: $3.90, 6 miles.
 ```
 
+In addition, we will add a bus function and walking function. You can even add coupons for a total price. CINDY YANG YOU NEED TO MAKE THIS LOOK PRETTY AND ACCURATE.
+
 ##How to Run:
 
 
