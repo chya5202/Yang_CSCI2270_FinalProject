@@ -11,15 +11,28 @@
 
 using namespace std;
 
-
+//helper method
 MovieTree::MovieTree(){
     root = NULL;
 }
 
+//helpter method
 void MovieTree::printMovieInventory(){
     printMovieInventory(root);
 }
 
+/*
+Function prototype:
+void MovieTree::printMovieInventory(MovieNode *node)
+
+Function description:
+This method uses a binary search tree traversal to print out the movies a store carreis in alphabtical order. 
+Example:
+BlockBuster->printMovieIncentory(root);
+
+Precondition: Root of MovieTree must exist. MovieTree must be filled out and established. 
+Post condition: MovieTree is unchanged, contents printed out for user. 
+*/
 void MovieTree::printMovieInventory(MovieNode *node){
     if (node->leftChild != NULL){
     printMovieInventory(node->leftChild);
@@ -30,6 +43,18 @@ void MovieTree::printMovieInventory(MovieNode *node){
     }
 }
 
+/*
+Function prototype:
+void MovieTree::addMovieNode(string title, double price)
+
+Function description:
+This method reads in a .txt file to add movies to a store and stores them in a binary search tree.  
+Example:
+BlockBuster->addMovieNode(title, price);
+
+Precondition: Root of MovieTree must exist. MovieTree must be established. title and price must be read in from .txt file. 
+Post condition: adds a movie node to the movie tree.
+*/
 void MovieTree::addMovieNode(string title, double price){
     MovieNode *z = new MovieNode; //creates a new movie node
     z->parent = NULL;
@@ -70,6 +95,19 @@ void MovieTree::addMovieNode(string title, double price){
     }
 }
 
+/*
+Function prototype:
+MovieNode* MovieTree::searchTree(string storename, MovieNode * node, string title)
+
+Function description:
+Called by findMovie. This method uses a binary search tree traversal to find and return the movie node that corresponds to the title to user desires. 
+If movie is not carried by particular store, will return that the store "currently does not carry" the title. 
+Example:
+ p = MovieTree::searchTree("BlockBuster", root, "Whiplash");
+
+Precondition: Root of MovieTree must exist. MovieTree must be filled out and established. 
+Post condition: Find the corresponding movieNode with the information for title desired by user. 
+*/
 MovieNode* MovieTree::searchTree(string storename, MovieNode * node, string title){
     if (title == node->title){
         return node;
@@ -92,15 +130,43 @@ MovieNode* MovieTree::searchTree(string storename, MovieNode * node, string titl
     }
 }
 
+/*
+Function prototype:
+void MovieTree::rentMovieBus(string storename, double busFare, string title, double coupon)
+
+Function description:
+Finds the total price of renting the movie if the user takes the bus. Calls searchTree function to determine if the store carries the title or not. 
+
+Example:
+STAR->rentMovieBus("STAR", 2, "The Dark Knight Rises", 0)
+
+Precondition: Root of MovieTree must exist. MovieTree must be filled out and established. Storename must be valid, busFare must be valid, title must be a string, coupon must be a number greater than or equal to 0.
+Post condition: Calculuates how much it would be to rent the movie from a certain store if user rides bus. 
+*/
+
 void MovieTree::rentMovieBus(string storename, double busFare, string title, double coupon){
     MovieNode *p = new MovieNode();
     double totalprice;
     p = MovieTree::searchTree(storename, root, title);
         if(p->title == title){
-        totalprice = p->price + busFare - coupon;
+        totalprice = p->price + (2*busFare) - coupon;
         cout << "The total price to rent " << title << " from " << storename << " by taking the bus is " << fixed << setprecision(2) << totalprice << "." << endl;
     }
 }
+
+/*
+Function prototype:
+void MovieTree::rentMovieDrive(string storename, double storedist, string title, double coupon)
+
+Function description:
+Finds the total price of renting the movie if the user drives. Asks for fuel efficiency and price of gas. Calls searchTree function to determine if the store carries the title or not. 
+
+Example:
+STAR->rentMovieDrive("STAR", 2, "Spirited Away", 0)
+
+Precondition: Root of MovieTree must exist. MovieTree must be filled out and established. Storename must be valid, distance must be valid, title must be a string, coupon must be a number greater than or equal to 0. User must have inputted a efficiency and a gas price previously.
+Post condition: Calculuates how much it would be to rent the movie from a certain store if user drives. 
+*/
 
 void MovieTree::rentMovieDrive(string storename, double storedist, string title, double coupon){
     MovieNode *p = new MovieNode();
@@ -114,6 +180,20 @@ void MovieTree::rentMovieDrive(string storename, double storedist, string title,
     }
 }
 
+/*
+Function prototype:
+void MovieTree::rentMovieWalk(string storename, string title, double coupon)
+
+Function description:
+Finds the total price of renting the movie if the user walks. Calls searchTree function to determine if the store carries the title or not. 
+
+Example:
+STAR->rentMovieWalk("STAR","Spirited Away", 0)
+
+Precondition: Root of MovieTree must exist. MovieTree must be filled out and established. Storename must be valid, title must be a string, coupon must be a number greater than or equal to 0.
+Post condition: Calculuates how much it would be to rent the movie from a certain store if user drives. 
+*/
+
 void MovieTree::rentMovieWalk(string storename, string title, double coupon){
     MovieNode *p = new MovieNode();
     double totalprice;
@@ -124,6 +204,19 @@ void MovieTree::rentMovieWalk(string storename, string title, double coupon){
     }
 }
 
+/*
+Function prototype:
+void MovieTree::findMovie(string storename, string title)
+
+Function description:
+Finds movie in tree. Calls searchTree function to determine if the store carries the title or not. 
+
+Example:
+BlockBuster->findMovie("BlockBuster","Shawshank Redemption")
+
+Precondition: Root of MovieTree must exist. MovieTree must be filled out and established. Storename must be valid, title must be a string.
+Post condition: Finds movie in tree and outputs movie and price if available. 
+*/
 void MovieTree::findMovie(string storename, string title){
     MovieNode *p = new MovieNode();
     double totalprice;
@@ -134,6 +227,19 @@ void MovieTree::findMovie(string storename, string title){
     }
 }
 
+/*
+Function prototype:
+double MovieTree::totalMovieCost(double distance, double efficiency, double gasprice, double rentalprice)
+
+Function description:
+Calculates total movie cost if user drives.
+
+Example:
+totalcost = totalMovieCost(4, 20, 2, 1.40);
+
+Precondition: distance, efficiency, gasprice, and rentalprice must be valid numbers.
+Post condition: Returns total cost of movie if user drives. 
+*/
 
 double MovieTree::totalMovieCost(double distance, double efficiency, double gasprice, double rentalprice){
     double transportationcost;
