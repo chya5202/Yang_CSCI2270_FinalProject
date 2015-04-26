@@ -94,7 +94,7 @@ int main(){
             cout<<"Please enter the name of the store."<<endl;
             cin>>rentStore;
             cout<<"Please enter the movie title."<<endl;
-            cin>>rentTitle;
+            cin >> rentTitle;
             cout<<"Please enter your coupon (in dollars). If you do not have a coupon, enter 0"<<endl;
             cin>>coupon;
             cout<<"Please enter your method of transportation (Walk, Drive or Bus)."<<endl;
@@ -104,65 +104,71 @@ int main(){
                 cin >> efficiency;
                 cout << "How much is gasoline right now? (dollars per gallon)" << endl;
                 cin >> gasprice;
-                cout << "The total price to rent " << rentTitle << " from" << endl;
-                if(rentTitle=="Barnes&Noble"){
+                if(rentStore == "Barnes&Noble"){
                     BarnesNoble->rentMovieDrive("Barnes&Noble", BNdist, rentTitle, coupon);
                 }
-                if(rentTitle=="BlockBuster"){
+                if(rentStore=="BlockBuster"){
                     BlockBuster->rentMovieDrive("BlockBuster", BBdist, rentTitle, coupon);
                 }
-                if(rentTitle=="DVDRentals"){
+                if(rentStore=="DVDRentals"){
                     DVDRentals->rentMovieDrive("DVDRentals", DVDdist, rentTitle, coupon);
                 }
-                if(rentTitle=="RedBox"){
+                if(rentStore=="RedBox"){
                     RedBox->rentMovieDrive("Redbox", RBdist, rentTitle, coupon);
                 }
-                if(rentTitle=="STAR"){
+                if(rentStore=="STAR"){
                     STAR->rentMovieDrive("STAR", STARdist, rentTitle, coupon);
+                }
+                else{
+                    cout << "Please enter a valid movie store (Barnes&Noble, BlockBuster, DVDRentals, RedBox, or STAR)." << endl;
                 }
             }
             if (rentTransportation=="Bus"){
                 cout<<"How much is your bus fare?"<<endl;
                 cin >> busFare;
-                cout << "The total price to rent " << rentTitle << " from" << endl;
-                if(rentTitle=="Barnes&Noble"){
+                if(rentStore=="Barnes&Noble"){
                     BarnesNoble->rentMovieBus("Barnes&Noble", busFare, rentTitle, coupon);
                 }
-                if(rentTitle=="BlockBuster"){
+                if(rentStore=="BlockBuster"){
                     BlockBuster->rentMovieBus("BlockBuster", busFare, rentTitle, coupon);
                 }
-                if(rentTitle=="DVDRentals"){
+                if(rentStore=="DVDRentals"){
                     DVDRentals->rentMovieBus("DVDRentals", busFare, rentTitle, coupon);
                 }
-                if(rentTitle=="RedBox"){
+                if(rentStore=="RedBox"){
                     RedBox->rentMovieBus("Redbox", busFare, rentTitle, coupon);
                 }
-                if(rentTitle=="STAR"){
+                if(rentStore=="STAR"){
                     STAR->rentMovieBus("STAR", busFare, rentTitle, coupon);
+                }
+                else{
+                    cout << "Please enter a valid movie store (Barnes&Noble, BlockBuster, DVDRentals, RedBox, or STAR)." << endl;
                 }
             }
             if (rentTransportation=="Walk"){
-                cout << "The total price to rent " << rentTitle << " from" << endl;
-                if(rentTitle=="Barnes&Noble"){
+                if(rentStore=="Barnes&Noble"){
                     BarnesNoble->rentMovieWalk("Barnes&Noble", rentTitle, coupon);
                 }
-                if(rentTitle=="BlockBuster"){
+                if(rentStore=="BlockBuster"){
                     BlockBuster->rentMovieWalk("BlockBuster", rentTitle, coupon);
                 }
-                if(rentTitle=="DVDRentals"){
+                if(rentStore=="DVDRentals"){
                     DVDRentals->rentMovieWalk("DVDRentals", rentTitle, coupon);
                 }
-                if(rentTitle=="RedBox"){
+                if(rentStore=="RedBox"){
                     RedBox->rentMovieWalk("Redbox", rentTitle, coupon);
                 }
-                if(rentTitle=="STAR"){
+                if(rentStore=="STAR"){
                     STAR->rentMovieWalk("STAR", rentTitle, coupon);
+                }
+                else{
+                    cout << "Please enter a valid movie store (Barnes&Noble, BlockBuster, DVDRentals, RedBox, or STAR)." << endl;
                 }
             }
         }
        choice = menu(); //brings up the menu again
     }
-    cout << "Goodbye!" << endl; //
+    cout << "Goodbye! Enjoy your movie!" << endl; //
 }
 
 
