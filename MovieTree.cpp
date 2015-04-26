@@ -9,7 +9,7 @@
 #include <cstring>
 #include "MovieTree.h"
 
-//using namespace std;
+using namespace std;
 
 
 MovieTree::MovieTree(){
@@ -24,13 +24,13 @@ void MovieTree::printMovieInventory(MovieNode *node){
     if (node->leftChild != NULL){
     printMovieInventory(node->leftChild);
     }
-    std::cout << "Movie: " << node->title << std::endl;
+    cout << "Movie: " << node->title << endl;
     if (node->rightChild != NULL){
     printMovieInventory(node->rightChild);
     }
 }
 
-void MovieTree::addMovieNode(std::string title, double price){
+void MovieTree::addMovieNode(string title, double price){
     MovieNode *z = new MovieNode; //creates a new movie node
     z->parent = NULL;
     //z->quantity = quantity;
@@ -67,17 +67,16 @@ void MovieTree::addMovieNode(std::string title, double price){
                 x = x->leftChild;
             }
         }
-        //std::cout << z->parent->title << std::endl;
     }
 }
 
-MovieNode* MovieTree::searchTree(std::string storename, MovieNode * node, std::string title){
+MovieNode* MovieTree::searchTree(string storename, MovieNode * node, string title){
     if (title == node->title){
         return node;
     }
     else if(title < node->title){
         if(node->leftChild == NULL){
-            std::cout << "\t" << storename << " currently does not carry " << title << "." << std::endl;
+            cout << "\t" << storename << " currently does not carry " << title << "." << endl;
         }
         else{
             return(searchTree(storename, node->leftChild, title));
@@ -85,7 +84,7 @@ MovieNode* MovieTree::searchTree(std::string storename, MovieNode * node, std::s
     }
     else if(title > node->title){
         if(node->rightChild == NULL){
-            std::cout << "\t" << storename << " currently does not carry " << title << "."<< std::endl;
+            cout << "\t" << storename << " currently does not carry " << title << "."<< endl;
         }
         else{
             return(searchTree(storename, node->rightChild, title));
@@ -93,7 +92,17 @@ MovieNode* MovieTree::searchTree(std::string storename, MovieNode * node, std::s
     }
 }
 
-void MovieTree::findMovie(std::string storename, double storedist, std::string title){
+void MovieTree::findMovieBus(string storename, double busFare, string title){
+    MovieNode *p = new MovieNode();
+    double totalprice;
+    p = MovieTree::searchTree(storename, root, title);
+        if(p->title == title){
+        totalprice = p->price + busFare;
+        cout << "\t" << storename << " is " << fixed << setprecision(2) << totalprice << "." << endl;
+    }
+}
+
+void MovieTree::findMovieDrive(string storename, double storedist, string title){
     MovieNode *p = new MovieNode();
     double totalprice;
     double rentalprice;
@@ -101,7 +110,17 @@ void MovieTree::findMovie(std::string storename, double storedist, std::string t
         if(p->title == title){
         rentalprice = p->price;
         totalprice = MovieTree::totalMovieCost(storedist, efficiency, gasprice, rentalprice);
-        std::cout << "\t" << storename << " is " << std::fixed << std::setprecision(2) << totalprice << "." << std::endl;
+        cout << "\t" << storename << " is " << fixed << setprecision(2) << totalprice << "." << endl;
+    }
+}
+
+void MovieTree::findMovieWalk(string storename, string title){
+    MovieNode *p = new MovieNode();
+    double totalprice;
+    p = MovieTree::searchTree(storename, root, title);
+        if(p->title == title){
+        totalprice = p->price;
+        cout << "\t" << storename << " is " << fixed << setprecision(2) << totalprice << "." << endl;
     }
 }
 
@@ -112,13 +131,3 @@ double MovieTree::totalMovieCost(double distance, double efficiency, double gasp
     totalprice = double(double(2*transportationcost) + rentalprice); //you should probably return from the store...
     return totalprice;
 }
-
-
-
-
-
-
-
-
-
-
