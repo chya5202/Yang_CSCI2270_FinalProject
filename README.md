@@ -5,6 +5,8 @@ Our project will have the user search for movies to rent from his home. To do th
 
 
 ##How to Run:
+In order to run this program, please download ALL files (including all text files). You may use the g++ compliler or import all files to a codeblocks project and run it from there.
+
 From the start, the user will be asked to input the distances from his location to the nearest movie rental store. Then, the user will be allowed to choose from these four options:
 
 ```
