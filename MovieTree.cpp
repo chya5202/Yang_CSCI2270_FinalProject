@@ -92,17 +92,17 @@ MovieNode* MovieTree::searchTree(string storename, MovieNode * node, string titl
     }
 }
 
-void MovieTree::findMovieBus(string storename, double busFare, string title){
+void MovieTree::rentMovieBus(string storename, double busFare, string title, double coupon){
     MovieNode *p = new MovieNode();
     double totalprice;
     p = MovieTree::searchTree(storename, root, title);
         if(p->title == title){
-        totalprice = p->price + busFare;
+        totalprice = p->price + busFare - coupon;
         cout << "\t" << storename << " is " << fixed << setprecision(2) << totalprice << "." << endl;
     }
 }
 
-void MovieTree::findMovieDrive(string storename, double storedist, string title){
+void MovieTree::rentMovieDrive(string storename, double storedist, string title, double coupon){
     MovieNode *p = new MovieNode();
     double totalprice;
     double rentalprice;
@@ -110,11 +110,21 @@ void MovieTree::findMovieDrive(string storename, double storedist, string title)
         if(p->title == title){
         rentalprice = p->price;
         totalprice = MovieTree::totalMovieCost(storedist, efficiency, gasprice, rentalprice);
+        cout << "\t" << storename << " is " << fixed << setprecision(2) << totalprice - coupon << "." << endl;
+    }
+}
+
+void MovieTree::rentMovieWalk(string storename, string title, double coupon){
+    MovieNode *p = new MovieNode();
+    double totalprice;
+    p = MovieTree::searchTree(storename, root, title);
+        if(p->title == title){
+        totalprice = p->price - coupon;
         cout << "\t" << storename << " is " << fixed << setprecision(2) << totalprice << "." << endl;
     }
 }
 
-void MovieTree::findMovieWalk(string storename, string title){
+void MovieTree::findMovie(string storename, string title){
     MovieNode *p = new MovieNode();
     double totalprice;
     p = MovieTree::searchTree(storename, root, title);
@@ -124,6 +134,7 @@ void MovieTree::findMovieWalk(string storename, string title){
     }
 }
 
+
 double MovieTree::totalMovieCost(double distance, double efficiency, double gasprice, double rentalprice){
     double transportationcost;
     double totalprice;
@@ -131,3 +142,4 @@ double MovieTree::totalMovieCost(double distance, double efficiency, double gasp
     totalprice = double(double(2*transportationcost) + rentalprice); //you should probably return from the store...
     return totalprice;
 }
+
