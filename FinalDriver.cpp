@@ -9,7 +9,6 @@
 #include <string>
 #include "MovieTree.h"
 
-
 using namespace std;
 
 int menu();
@@ -22,6 +21,7 @@ MovieTree *RedBox = new MovieTree();
 MovieTree *STAR = new MovieTree();
 double gasprice;
 double efficiency;
+double busFare;
 double BNdist;
 double BBdist;
 double DVDdist;
@@ -34,10 +34,6 @@ int main(){
     int choice = 0;
     cout << "Welcome to SuperDuperMovieRenter!" << endl;
     cout << "In order for us to serve you better, please provide the following information:" << endl;
-    cout << "What is your car's fuel efficiency? (miles per gallon)" << endl;
-    cin >> efficiency;
-    cout << "How much is gasoline right now? (dollars per gallon)" << endl;
-    cin >> gasprice;
     cout << "How far away is your nearest Barnes&Noble? (miles) "<< endl;
     cin >> BNdist;
     cout << "How far away is your nearest BlockBuster? (miles)" << endl;
@@ -56,13 +52,40 @@ int main(){
             string findtitle;
             getline(cin,findtitle);
             getline(cin,findtitle);
-            cout << "The total price to rent " << findtitle << " from:" << endl;
-            BarnesNoble->findMovie("Barnes&Noble", BNdist, findtitle);
-            BlockBuster->findMovie("BlockBuster", BBdist, findtitle);
-            DVDRentals->findMovie("DVDRentals", DVDdist, findtitle);
-            RedBox->findMovie("Redbox", RBdist, findtitle);
-            STAR->findMovie("STAR", STARdist, findtitle);
+            string walkDriveBus;
+            cout<<"Would you like to walk, drive or bus?"<<endl;
+            cin >> walkDriveBus;
+            if (walkDriveBus=="Drive"){
+                cout << "What is your car's fuel efficiency? (miles per gallon)" << endl;
+                cin >> efficiency;
+                cout << "How much is gasoline right now? (dollars per gallon)" << endl;
+                cin >> gasprice;
+                cout << "The total price to rent " << findtitle << " from:" << endl;
+                BarnesNoble->findMovieDrive("Barnes&Noble", BNdist, findtitle);
+                BlockBuster->findMovieDrive("BlockBuster", BBdist, findtitle);
+                DVDRentals->findMovieDrive("DVDRentals", DVDdist, findtitle);
+                RedBox->findMovieDrive("Redbox", RBdist, findtitle);
+                STAR->findMovieDrive("STAR", STARdist, findtitle);
+            }
+            if (walkDriveBus=="Walk"){
+                cout << "The total price to rent " << findtitle << " from:" << endl;
+                BarnesNoble->findMovieWalk("Barnes&Noble", findtitle);
+                BlockBuster->findMovieWalk("BlockBuster", findtitle);
+                DVDRentals->findMovieWalk("DVDRentals", findtitle);
+                RedBox->findMovieWalk("Redbox", findtitle);
+                STAR->findMovieWalk("STAR", findtitle);
+            }
+            if (walkDriveBus=="Bus")
+                cout<<"How much is your bus fare?"<<endl;
+                cin >> busFare;
+                cout << "The total price to rent " << findtitle << " from:" << endl;
+                BarnesNoble->findMovieBus("Barnes&Noble",busFare, findtitle);
+                BlockBuster->findMovieBus("BlockBuster",busFare, findtitle);
+                DVDRentals->findMovieBus("DVDRentals", busFare, findtitle);
+                RedBox->findMovieBus("Redbox", busFare, findtitle);
+                STAR->findMovieBus("STAR", busFare, findtitle);
         }
+
         if (choice == 2){ //print inventory of a store
             cout << "Would you like to print the inventory of Barnes&Noble, BlockBuster, DVDRentals, Redbox, or STAR?" << endl;
             string storename;
@@ -95,6 +118,7 @@ int main(){
 
 int menu() //main menu and decisions
 {
+    cout<<"   "<<endl;
     cout << "======Movie Deals====="<< endl;
     cout << "1. Compare prices" << endl;
     cout << "2. Print the inventory of a store" << endl;
