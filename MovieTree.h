@@ -36,9 +36,10 @@ class MovieTree
         //virtual ~MovieTree();
         void printMovieInventory();
         void addMovieNode(string title, double price);
-        void findMovieDrive(string storename, double storedist, string title);
-        void findMovieWalk(string storename, string title);
-        void findMovieBus(string storename, double busFare, string title);
+        void findMovie(string storename, string title);
+        void rentMovieDrive(string storename, double storedist, string title, double coupon);
+        void rentMovieWalk(string storename, string title, double coupon);
+        void rentMovieBus(string storename, double busFare, string title, double coupon);
         double totalMovieCost(double distance, double efficiency, double gasprice, double rentalprice);
     protected:
     private:
