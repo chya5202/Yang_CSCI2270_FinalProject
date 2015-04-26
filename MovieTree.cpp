@@ -98,7 +98,7 @@ void MovieTree::rentMovieBus(string storename, double busFare, string title, dou
     p = MovieTree::searchTree(storename, root, title);
         if(p->title == title){
         totalprice = p->price + busFare - coupon;
-        cout << "\t" << storename << " is " << fixed << setprecision(2) << totalprice << "." << endl;
+        cout << "The total price to rent " << title << " from " << storename << " by taking the bus is " << fixed << setprecision(2) << totalprice << "." << endl;
     }
 }
 
@@ -110,7 +110,7 @@ void MovieTree::rentMovieDrive(string storename, double storedist, string title,
         if(p->title == title){
         rentalprice = p->price;
         totalprice = MovieTree::totalMovieCost(storedist, efficiency, gasprice, rentalprice);
-        cout << "\t" << storename << " is " << fixed << setprecision(2) << totalprice - coupon << "." << endl;
+        cout << "The total price to rent " << title << " from " << storename << " by driving is " << fixed << setprecision(2) << totalprice - coupon << "." << endl;
     }
 }
 
@@ -120,7 +120,7 @@ void MovieTree::rentMovieWalk(string storename, string title, double coupon){
     p = MovieTree::searchTree(storename, root, title);
         if(p->title == title){
         totalprice = p->price - coupon;
-        cout << "\t" << storename << " is " << fixed << setprecision(2) << totalprice << "." << endl;
+        cout << "The total price to rent " << title << " from " << storename << " by walking is " << fixed << setprecision(2) << totalprice << "." << endl;
     }
 }
 
