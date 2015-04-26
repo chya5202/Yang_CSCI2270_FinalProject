@@ -28,6 +28,7 @@ double DVDdist;
 double RBdist;
 double STARdist;
 
+
 int main(){
 
     buildMovieStore();
@@ -46,47 +47,8 @@ int main(){
     cin >> STARdist;
 
     choice = menu(); //initiates the menu
-    while (choice != 3){ //as long as the user does not choose to quit
-        if (choice == 1){ //compare price
-            cout << "Enter title:" << endl;
-            string findtitle;
-            getline(cin,findtitle);
-            getline(cin,findtitle);
-            string walkDriveBus;
-            cout<<"Would you like to walk, drive or bus?"<<endl;
-            cin >> walkDriveBus;
-            if (walkDriveBus=="Drive"){
-                cout << "What is your car's fuel efficiency? (miles per gallon)" << endl;
-                cin >> efficiency;
-                cout << "How much is gasoline right now? (dollars per gallon)" << endl;
-                cin >> gasprice;
-                cout << "The total price to rent " << findtitle << " from:" << endl;
-                BarnesNoble->findMovieDrive("Barnes&Noble", BNdist, findtitle);
-                BlockBuster->findMovieDrive("BlockBuster", BBdist, findtitle);
-                DVDRentals->findMovieDrive("DVDRentals", DVDdist, findtitle);
-                RedBox->findMovieDrive("Redbox", RBdist, findtitle);
-                STAR->findMovieDrive("STAR", STARdist, findtitle);
-            }
-            if (walkDriveBus=="Walk"){
-                cout << "The total price to rent " << findtitle << " from:" << endl;
-                BarnesNoble->findMovieWalk("Barnes&Noble", findtitle);
-                BlockBuster->findMovieWalk("BlockBuster", findtitle);
-                DVDRentals->findMovieWalk("DVDRentals", findtitle);
-                RedBox->findMovieWalk("Redbox", findtitle);
-                STAR->findMovieWalk("STAR", findtitle);
-            }
-            if (walkDriveBus=="Bus")
-                cout<<"How much is your bus fare?"<<endl;
-                cin >> busFare;
-                cout << "The total price to rent " << findtitle << " from:" << endl;
-                BarnesNoble->findMovieBus("Barnes&Noble",busFare, findtitle);
-                BlockBuster->findMovieBus("BlockBuster",busFare, findtitle);
-                DVDRentals->findMovieBus("DVDRentals", busFare, findtitle);
-                RedBox->findMovieBus("Redbox", busFare, findtitle);
-                STAR->findMovieBus("STAR", busFare, findtitle);
-        }
-
-        if (choice == 2){ //print inventory of a store
+    while (choice != 4){ //as long as the user does not choose to quit
+            if (choice == 1){ //print inventory of a store
             cout << "Would you like to print the inventory of Barnes&Noble, BlockBuster, DVDRentals, Redbox, or STAR?" << endl;
             string storename;
             getline(cin, storename);
@@ -110,6 +72,94 @@ int main(){
                 cout << "Please enter a valid movie rental store." << endl;
             }
         }
+
+        if (choice == 2){ //compare price
+            cout << "Enter title:" << endl;
+            string findtitle;
+            getline(cin,findtitle);
+            getline(cin,findtitle);
+            cout << "The price to rent " << findtitle << " from:" << endl;
+            BarnesNoble->findMovie("Barnes&Noble", findtitle);
+            BlockBuster->findMovie("BlockBuster", findtitle);
+            DVDRentals->findMovie("DVDRentals", findtitle);
+            RedBox->findMovie("Redbox", findtitle);
+            STAR->findMovie("STAR", findtitle);
+            }
+
+        if (choice==3){
+            string rentStore;
+            string rentTitle;
+            string rentTransportation;
+            double coupon;
+            cout<<"Please enter the name of the store."<<endl;
+            cin>>rentStore;
+            cout<<"Please enter the movie title."<<endl;
+            cin>>rentTitle;
+            cout<<"Please enter your coupon (in dollars). If you do not have a coupon, enter 0"<<endl;
+            cin>>coupon;
+            cout<<"Please enter your method of transportation (Walk, Drive or Bus)."<<endl;
+            cin>>rentTransportation;
+            if (rentTransportation=="Drive"){
+                cout << "What is your car's fuel efficiency? (miles per gallon)" << endl;
+                cin >> efficiency;
+                cout << "How much is gasoline right now? (dollars per gallon)" << endl;
+                cin >> gasprice;
+                cout << "The total price to rent " << rentTitle << " from" << endl;
+                if(rentTitle=="Barnes&Noble"){
+                    BarnesNoble->rentMovieDrive("Barnes&Noble", BNdist, rentTitle, coupon);
+                }
+                if(rentTitle=="BlockBuster"){
+                    BlockBuster->rentMovieDrive("BlockBuster", BBdist, rentTitle, coupon);
+                }
+                if(rentTitle=="DVDRentals"){
+                    DVDRentals->rentMovieDrive("DVDRentals", DVDdist, rentTitle, coupon);
+                }
+                if(rentTitle=="RedBox"){
+                    RedBox->rentMovieDrive("Redbox", RBdist, rentTitle, coupon);
+                }
+                if(rentTitle=="STAR"){
+                    STAR->rentMovieDrive("STAR", STARdist, rentTitle, coupon);
+                }
+            }
+            if (rentTransportation=="Bus"){
+                cout<<"How much is your bus fare?"<<endl;
+                cin >> busFare;
+                cout << "The total price to rent " << rentTitle << " from" << endl;
+                if(rentTitle=="Barnes&Noble"){
+                    BarnesNoble->rentMovieBus("Barnes&Noble", busFare, rentTitle, coupon);
+                }
+                if(rentTitle=="BlockBuster"){
+                    BlockBuster->rentMovieBus("BlockBuster", busFare, rentTitle, coupon);
+                }
+                if(rentTitle=="DVDRentals"){
+                    DVDRentals->rentMovieBus("DVDRentals", busFare, rentTitle, coupon);
+                }
+                if(rentTitle=="RedBox"){
+                    RedBox->rentMovieBus("Redbox", busFare, rentTitle, coupon);
+                }
+                if(rentTitle=="STAR"){
+                    STAR->rentMovieBus("STAR", busFare, rentTitle, coupon);
+                }
+            }
+            if (rentTransportation=="Walk"){
+                cout << "The total price to rent " << rentTitle << " from" << endl;
+                if(rentTitle=="Barnes&Noble"){
+                    BarnesNoble->rentMovieWalk("Barnes&Noble", rentTitle, coupon);
+                }
+                if(rentTitle=="BlockBuster"){
+                    BlockBuster->rentMovieWalk("BlockBuster", rentTitle, coupon);
+                }
+                if(rentTitle=="DVDRentals"){
+                    DVDRentals->rentMovieWalk("DVDRentals", rentTitle, coupon);
+                }
+                if(rentTitle=="RedBox"){
+                    RedBox->rentMovieWalk("Redbox", rentTitle, coupon);
+                }
+                if(rentTitle=="STAR"){
+                    STAR->rentMovieWalk("STAR", rentTitle, coupon);
+                }
+            }
+        }
        choice = menu(); //brings up the menu again
     }
     cout << "Goodbye!" << endl; //
@@ -120,9 +170,10 @@ int menu() //main menu and decisions
 {
     cout<<"   "<<endl;
     cout << "======Movie Deals====="<< endl;
-    cout << "1. Compare prices" << endl;
-    cout << "2. Print the inventory of a store" << endl;
-    cout << "3. Quit" << endl;
+    cout << "1. Print the inventory of a store" << endl;
+    cout << "2. Compare Prices" << endl;
+    cout << "3. Rent my movie" << endl;
+    cout << "4. Quit" << endl;
 
     int choice1;
     cin >> ws;
