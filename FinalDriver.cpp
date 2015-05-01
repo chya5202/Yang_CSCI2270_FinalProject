@@ -32,22 +32,29 @@ double STARdist;
 int main(){
 
     buildMovieStore();
+    string intfloatSpaceholder;
     int choice = 0;
     cout << "Welcome to SuperDuperMovieRenter!" << endl;
     cout << "In order for us to serve you better, please provide the following information:" << endl;
     cout << "How far away is your nearest Barnes&Noble? (miles) "<< endl;
-    cin >> BNdist;
+    getline(cin, intfloatSpaceholder);
+    BNdist = atof(intfloatSpaceholder.c_str());
     cout << "How far away is your nearest BlockBuster? (miles)" << endl;
-    cin >> BBdist;
+    getline(cin, intfloatSpaceholder);
+    BBdist = atof(intfloatSpaceholder.c_str());
     cout << "How far away is your nearest DVDRental? (miles)" << endl;
-    cin >> DVDdist;
+    getline(cin, intfloatSpaceholder);
+    DVDdist = atof(intfloatSpaceholder.c_str());
     cout << "How far away is your nearest Redbox? (miles)" << endl;
-    cin >> RBdist;
+    getline(cin, intfloatSpaceholder);
+    RBdist = atof(intfloatSpaceholder.c_str());
     cout << "How far away is your nearest STAR? (miles)"<< endl;
-    cin >> STARdist;
+    getline(cin, intfloatSpaceholder);
+    STARdist = atof(intfloatSpaceholder.c_str());
 
     choice = menu(); //initiates the menu
     while (choice != 4){ //as long as the user does not choose to quit
+            cout << "Choice is: " << choice << endl;
             if (choice == 1){ //print inventory of a store
             cout << "Would you like to print the inventory of Barnes&Noble, BlockBuster, DVDRentals, Redbox, or STAR?" << endl;
             string storename;
@@ -77,7 +84,7 @@ int main(){
             cout << "Enter title:" << endl;
             string findtitle;
             getline(cin,findtitle);
-            getline(cin,findtitle);
+            findtitle=RedBox->searchTree(findtitle);
             cout << "The price to rent " << findtitle << " from:" << endl;
             BarnesNoble->findMovie("Barnes&Noble", findtitle);
             BlockBuster->findMovie("BlockBuster", findtitle);
@@ -91,60 +98,51 @@ int main(){
             string rentTitle;
             string rentTransportation;
             double coupon;
-            cout<<"Please enter the name of the store."<<endl;
-            cin>>rentStore;
-            cout<<"Please enter the movie title."<<endl;
-            cin >> rentTitle;
-            cout<<"Please enter your coupon (in dollars). If you do not have a coupon, enter 0"<<endl;
-            cin>>coupon;
-            cout<<"Please enter your method of transportation (Walk, Drive or Bus)."<<endl;
-            cin>>rentTransportation;
-            if (rentTransportation=="Drive"){
-                cout << "What is your car's fuel efficiency? (miles per gallon)" << endl;
-                cin >> efficiency;
-                cout << "How much is gasoline right now? (dollars per gallon)" << endl;
-                cin >> gasprice;
-                if(rentStore == "Barnes&Noble"){
-                    BarnesNoble->rentMovieDrive("Barnes&Noble", BNdist, rentTitle, coupon);
+            cout<<"Please enter the name of the store. (Barnes&Noble, BlockBuster, DVDRentals, RedBox, or STAR)"<<endl;
+            getline(cin, rentStore);
+            if(rentStore=="Barnes&Noble"||rentStore=="BlockBuster"||rentStore=="DVDRentals"||rentStore=="RedBox"||rentStore=="STAR"){
+                cout<<"Please enter the movie title."<<endl;
+                getline(cin,rentTitle);
+                cout<<"Please enter your coupon (in dollars). If you do not have a coupon, enter 0"<<endl;
+                getline(cin, intfloatSpaceholder);
+                coupon= atof(intfloatSpaceholder.c_str());
+                cout<<"Please enter your method of transportation (Walk, Drive or Bus)."<<endl;
+                getline(cin,rentTransportation);
+                if (rentTransportation=="Drive"){
+                    cout << "What is your car's fuel efficiency? (miles per gallon)" << endl;
+                    getline(cin, intfloatSpaceholder);
+                    efficiency = atof(intfloatSpaceholder.c_str());
+                    cout << "How much is gasoline right now? (dollars per gallon)" << endl;
+                    getline(cin, intfloatSpaceholder);
+                    gasprice = atof(intfloatSpaceholder.c_str());
+                    if(rentStore == "Barnes&Noble"){
+                        BarnesNoble->rentMovieDrive("Barnes&Noble", BNdist, rentTitle, coupon);
+                    }else if(rentStore=="BlockBuster"){
+                        BlockBuster->rentMovieDrive("BlockBuster", BBdist, rentTitle, coupon);
+                    }else if(rentStore=="DVDRentals"){
+                        DVDRentals->rentMovieDrive("DVDRentals", DVDdist, rentTitle, coupon);
+                    }else if(rentStore=="RedBox"){
+                        RedBox->rentMovieDrive("Redbox", RBdist, rentTitle, coupon);
+                    }else if(rentStore=="STAR"){
+                        STAR->rentMovieDrive("STAR", STARdist, rentTitle, coupon);
+                    }
                 }
-                if(rentStore=="BlockBuster"){
-                    BlockBuster->rentMovieDrive("BlockBuster", BBdist, rentTitle, coupon);
+                if (rentTransportation=="Bus"){
+                    cout<<"How much is your bus fare?"<<endl;
+                    getline(cin, intfloatSpaceholder);
+                    busFare = atof(intfloatSpaceholder.c_str());
+                    if(rentStore=="Barnes&Noble"){
+                        BarnesNoble->rentMovieBus("Barnes&Noble", busFare, rentTitle, coupon);
+                    }else if(rentStore=="BlockBuster"){
+                        BlockBuster->rentMovieBus("BlockBuster", busFare, rentTitle, coupon);
+                    }else if(rentStore=="DVDRentals"){
+                        DVDRentals->rentMovieBus("DVDRentals", busFare, rentTitle, coupon);
+                    }else if(rentStore=="RedBox"){
+                        RedBox->rentMovieBus("Redbox", busFare, rentTitle, coupon);
+                    }else if(rentStore=="STAR"){
+                        STAR->rentMovieBus("STAR", busFare, rentTitle, coupon);
+                    }
                 }
-                if(rentStore=="DVDRentals"){
-                    DVDRentals->rentMovieDrive("DVDRentals", DVDdist, rentTitle, coupon);
-                }
-                if(rentStore=="RedBox"){
-                    RedBox->rentMovieDrive("Redbox", RBdist, rentTitle, coupon);
-                }
-                if(rentStore=="STAR"){
-                    STAR->rentMovieDrive("STAR", STARdist, rentTitle, coupon);
-                }
-                else{
-                    cout << "Please enter a valid movie store (Barnes&Noble, BlockBuster, DVDRentals, RedBox, or STAR)." << endl;
-                }
-            }
-            if (rentTransportation=="Bus"){
-                cout<<"How much is your bus fare?"<<endl;
-                cin >> busFare;
-                if(rentStore=="Barnes&Noble"){
-                    BarnesNoble->rentMovieBus("Barnes&Noble", busFare, rentTitle, coupon);
-                }
-                if(rentStore=="BlockBuster"){
-                    BlockBuster->rentMovieBus("BlockBuster", busFare, rentTitle, coupon);
-                }
-                if(rentStore=="DVDRentals"){
-                    DVDRentals->rentMovieBus("DVDRentals", busFare, rentTitle, coupon);
-                }
-                if(rentStore=="RedBox"){
-                    RedBox->rentMovieBus("Redbox", busFare, rentTitle, coupon);
-                }
-                if(rentStore=="STAR"){
-                    STAR->rentMovieBus("STAR", busFare, rentTitle, coupon);
-                }
-                else{
-                    cout << "Please enter a valid movie store (Barnes&Noble, BlockBuster, DVDRentals, RedBox, or STAR)." << endl;
-                }
-            }
             if (rentTransportation=="Walk"){
                 if(rentStore=="Barnes&Noble"){
                     BarnesNoble->rentMovieWalk("Barnes&Noble", rentTitle, coupon);
@@ -161,9 +159,10 @@ int main(){
                 if(rentStore=="STAR"){
                     STAR->rentMovieWalk("STAR", rentTitle, coupon);
                 }
-                else{
-                    cout << "Please enter a valid movie store (Barnes&Noble, BlockBuster, DVDRentals, RedBox, or STAR)." << endl;
-                }
+            }
+        }
+        else{
+            cout << "Please enter a valid movie store (Barnes&Noble, BlockBuster, DVDRentals, RedBox, or STAR)." << endl;
             }
         }
        choice = menu(); //brings up the menu again
@@ -182,8 +181,11 @@ int menu() //main menu and decisions
     cout << "4. Quit" << endl;
 
     int choice1;
-    cin >> ws;
-    cin >> choice1;
+    /*cin >> ws;
+    cin >> choice1;*/
+    string rawInput;
+    getline(cin, rawInput);
+    choice1 = atoi(rawInput.c_str());
     return choice1;
 }
 

@@ -40,6 +40,9 @@ class MovieTree
         void rentMovieDrive(string storename, double storedist, string title, double coupon);
         void rentMovieWalk(string storename, string title, double coupon);
         void rentMovieBus(string storename, double busFare, string title, double coupon);
+        bool compare(std::string one, std::string two);
+        string searchTree(string title);
+        MovieNode* searchTree(MovieNode * node, string title);
         double totalMovieCost(double distance, double efficiency, double gasprice, double rentalprice);
     protected:
     private:
