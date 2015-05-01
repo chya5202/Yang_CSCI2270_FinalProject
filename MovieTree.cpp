@@ -267,8 +267,18 @@ bool MovieTree::compare(std::string one, std::string two){
     int same=0;
     if(one.length()==two.length()){
         for(int i=0; i<one.length(); i++){
-            if(one[i]==two[i] || (one[i]+32)==two[i] || (two[i]+32)==one[i]){
+            if(one[i]==two[i]){
                     same++;
+            }
+            else if(one[i]>=65 && one[i]<=90){
+                if(one[i]+32==two[i]){
+                    same++;
+                }
+            }
+            else if(two[i]>=65 && two[i]<=90){
+                if(two[i]+32==one[i]){
+                    same++;
+                }
             }
             else{
                 return false;
